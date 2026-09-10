@@ -17,8 +17,6 @@
 .gate-card .who{font-size:15px;margin:0 0 22px;color:#4a5665}
 #startBtn{background:var(--navy);color:#fff;border:0;border-radius:6px;font:700 20px Arial,Helvetica,sans-serif;padding:16px 38px;cursor:pointer}
 #startBtn:focus-visible{outline:3px solid #e6ad28;outline-offset:3px}
-.gate-alt{margin-top:15px;font-size:14px}
-.gate-alt button{background:none;border:0;color:var(--navy);text-decoration:underline;cursor:pointer;font:inherit}
 .gate-note{margin-top:19px;font-size:12px;color:#596575}
 @media print{#gate{display:none!important}}
 
@@ -50,11 +48,10 @@
 <div id="gate">
   <div class="gate-card">
     <div class="gate-logo">DRC <span>INSIGHT</span><sup>&#8482;</sup></div>
-    <h1>Grades 6-8 Argumentative Writing</h1>
-    <p class="who">Practice Student</p>
-    <button id="startBtn">Start Practice Test</button>
-    <div class="gate-alt"><button id="skipBtn">Continue in this window instead</button></div>
-    <p class="gate-note">Classroom practice. Not an official testing platform.<br>You will write your response on paper.</p>
+    <h1>Grades 6-8 Source-Based Writing</h1>
+    <p class="who">Fall Writing Benchmark</p>
+    <button id="startBtn">Start Test</button>
+    <p class="gate-note">Classroom benchmark. Not an official testing platform.<br>You will read on the screen and write your response on paper.</p>
   </div>
 </div>
 
@@ -195,16 +192,14 @@ function goFull(){
 }
 on('#fsBtn',goFull);
 
-/* ---- start gate: shown only when the page is framed or the window is narrow.
-        The content is never hidden by anything other than this gate, and the
-        gate is only ever shown by this script, so a script error cannot block it. ---- */
+/* ---- start gate: shown on every load except in a popped-out window.
+        The gate is only ever shown by this script, so a script error cannot block the page. ---- */
 var gate=qs('#gate');
-if(gate&&!wasPopped&&(framed||window.innerWidth<1100)) gate.classList.add('show');
+if(gate&&!wasPopped) gate.classList.add('show');
 on('#startBtn',function(){
   if(gate) gate.classList.remove('show');
   goFull();
 });
-on('#skipBtn',function(){ if(gate) gate.classList.remove('show'); });
 
 /* ---- text size ---- */
 var size=18, zoomEl=qs('#zoom');
